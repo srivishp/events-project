@@ -1,4 +1,5 @@
 import Link from "next/link";
+import classes from "./EventItem.module.css";
 
 function EventItem(props) {
   const { title, image, date, location, id } = props;
@@ -19,19 +20,19 @@ function EventItem(props) {
     //* src can defined below like that because it automatically routes to the images in the public folder
     //* no need of "/public" because it is already visible to us, as if we are in that folder
 
-    <li>
-      <img src={"/" + image} alt={title} />
-      <div>
-        <div>
-          <h2>TITLE</h2>
-          <div>
+    <li className={classes.item}>
+      <img className={classes.img} src={"/" + image} alt={title} />
+      <div className={classes.content}>
+        <div className={classes.summary}>
+          <h2>{title}</h2>
+          <div className={classes.date}>
             <time>{readableDate}</time>
           </div>
-          <div>
+          <div className={classes.address}>
             <address>{formattedAddress}</address>
           </div>
         </div>
-        <div>
+        <div className={classes.actions}>
           <Link href={exploreLink}>Explore Event</Link>
         </div>
       </div>
