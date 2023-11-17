@@ -5,7 +5,7 @@ import EventLogistics from "@/components/event-detail/EventLogistics";
 import EventContent from "@/components/event-detail/EventContent";
 function EventDetailPage() {
   const router = useRouter();
-  // eventId stores the concrete value that was entered in the URL
+  //-> eventId stores the concrete value that was entered in the URL
   const eventId = router.query.eventId;
   const event = getEventById(eventId);
 
