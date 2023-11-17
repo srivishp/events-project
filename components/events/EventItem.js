@@ -17,7 +17,7 @@ function EventItem(props) {
   const exploreLink = `/events/${id}`;
 
   return (
-    //todo Public folder in next js
+    //# Public folder in next js
     // Next JS automatically makes content in the pages folder visibile to the user
     // and will be served statically
     //* src can defined below like that because it automatically routes to the images in the public folder
