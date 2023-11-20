@@ -25,8 +25,18 @@ const DUMMY_EVENTS = [
     description:
       "You probably need no help with networking in general. But focusing your energy correctly - that is something where most people can improve.",
     location: "My Street 12, 10115 Broke City",
-    date: "2024-04-16",
+    date: "2024-04-27",
     image: "images/networking.jpg",
+    isFeatured: true,
+  },
+  {
+    id: "e4",
+    title: "Mathematics Tour (+-=÷x)",
+    description:
+      "Ed Sheeran is back in India, after 7 years! Book your tickets now",
+    location: "Mahalaxmi Race Course, Mumbai",
+    date: "2024-03-16",
+    image: "images/concert.png",
     isFeatured: true,
   },
 ];
