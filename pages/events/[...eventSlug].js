@@ -1,6 +1,9 @@
 import { useRouter } from "next/router";
 import { getFilteredEvents } from "@/dummy-data";
 import EventList from "@/components/events/EventList";
+import ResultsTitle from "@/components/events/ResultsTitle";
+import Button from "@/components/ui/Button";
+import ErrorAlert from "@/components/ui/ErrorAlert";
 
 function FilteredEvents() {
   const router = useRouter();
@@ -11,7 +14,16 @@ function FilteredEvents() {
   console.log(filterData);
 
   if (!filterData) {
-    return <p className="center">Loading...</p>;
+    return (
+      <>
+        <ErrorAlert>
+          <p className="center">Loading...</p>
+        </ErrorAlert>
+        <div className="center">
+          <Button link="/events">Show All Events</Button>
+        </div>
+      </>
+    );
   }
   const filteredYear = filterData[0];
   const filteredMonth = filterData[1];
@@ -27,7 +39,16 @@ function FilteredEvents() {
     numMonth < 1 ||
     numMonth > 12
   ) {
-    return <p className="center">Invalid filter! Please check values.</p>;
+    return (
+      <>
+        <ErrorAlert>
+          <p className="center">Invalid filter! Please check values.</p>
+        </ErrorAlert>
+        <div className="center">
+          <Button link="/events">Show All Events</Button>
+        </div>
+      </>
+    );
   }
 
   const filteredEvents = getFilteredEvents({
@@ -36,11 +57,23 @@ function FilteredEvents() {
   });
 
   if (!filteredEvents || filteredEvents.length === 0) {
-    return <p className="center">No events found for the chosen filter!</p>;
+    return (
+      <>
+        <ErrorAlert>
+          <p className="center">No events found for the chosen filter!</p>
+        </ErrorAlert>
+        <div className="center">
+          <Button link="/events">Show All Events</Button>
+        </div>
+      </>
+    );
   }
+
+  const date = new Date(numYear, numMonth - 1);
 
   return (
     <div>
+      <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </div>
   );
