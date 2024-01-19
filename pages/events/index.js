@@ -2,6 +2,7 @@ import { getAllEvents } from "@/dummy-data";
 import { useRouter } from "next/router";
 import EventList from "@/components/events/EventList";
 import EventsSearch from "@/components/events/EventsSearch";
+import Head from "next/head";
 
 function AllEventsPage() {
   const events = getAllEvents();
@@ -19,6 +20,9 @@ function AllEventsPage() {
 
   return (
     <>
+      <Head>
+        <title>Events List</title>
+      </Head>
       <EventsSearch onSearch={findEventsHandler} />
       <EventList items={events} />
     </>

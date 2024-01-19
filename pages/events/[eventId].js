@@ -4,6 +4,7 @@ import EventSummary from "@/components/event-detail/EventSummary";
 import EventLogistics from "@/components/event-detail/EventLogistics";
 import EventContent from "@/components/event-detail/EventContent";
 import ErrorAlert from "@/components/ui/ErrorAlert";
+import Head from "next/head";
 
 function EventDetailPage() {
   const router = useRouter();
@@ -21,6 +22,10 @@ function EventDetailPage() {
 
   return (
     <>
+      <Head>
+        <title>{event.title}</title>
+        <meta name="description" content={event.description} />
+      </Head>
       <EventSummary title={event.title} />
       <EventLogistics
         date={event.date}
