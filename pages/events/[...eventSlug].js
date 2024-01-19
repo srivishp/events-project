@@ -9,6 +9,22 @@ import Head from "next/head";
 function FilteredEvents() {
   const router = useRouter();
 
+  const filteredYear = filterData[0];
+  const filteredMonth = filterData[1];
+
+  const numYear = +filteredYear;
+  const numMonth = +filteredMonth;
+
+  const pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta
+        name="description"
+        content={`All events for ${numMonth}/${numYear}`}
+      />
+    </Head>
+  );
+
   //# Here, in filterData, router.query.slug should have the name of the catch-all file
   //-> In my case, it is router.query.eventSlug (because my file name is [...eventSlug].js)
   const filterData = router.query.eventSlug;
@@ -17,6 +33,7 @@ function FilteredEvents() {
   if (!filterData) {
     return (
       <>
+        {pageHeadData}
         <ErrorAlert>
           <p className="center">Loading...</p>
         </ErrorAlert>
@@ -26,11 +43,6 @@ function FilteredEvents() {
       </>
     );
   }
-  const filteredYear = filterData[0];
-  const filteredMonth = filterData[1];
-
-  const numYear = +filteredYear;
-  const numMonth = +filteredMonth;
 
   if (
     isNaN(numYear) ||
@@ -42,6 +54,7 @@ function FilteredEvents() {
   ) {
     return (
       <>
+        {pageHeadData}
         <ErrorAlert>
           <p className="center">Invalid filter! Please check values.</p>
         </ErrorAlert>
@@ -60,6 +73,7 @@ function FilteredEvents() {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <>
+        {pageHeadData}
         <ErrorAlert>
           <p className="center">No events found for the chosen filter!</p>
         </ErrorAlert>
@@ -74,13 +88,7 @@ function FilteredEvents() {
 
   return (
     <div>
-      <Head>
-        <title>Filtered Events</title>
-        <meta
-          name="description"
-          content={`All events for ${numMonth}/${numYear}`}
-        />
-      </Head>
+      {pageHeadData}
       <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </div>
